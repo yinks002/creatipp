@@ -1,0 +1,8 @@
+service: () -> {
+    DonateToCreator: (nat64, principal) -> (variant {Ok:record {id:principal; Category:text; donations:vec record {id:principal; value:nat64; time:nat64}}; Err:variant {CreatorDoesNotExist:principal; DonationDoesNotExist:principal; UserNeverMadeDonations:principal}});
+    UserDonationList: (principal) -> (variant {Ok:vec record {id:principal; value:nat64; time:nat64}; Err:variant {CreatorDoesNotExist:principal; DonationDoesNotExist:principal; UserNeverMadeDonations:principal}}) query;
+    creatorAccessDonations: () -> () query;
+    creatorSignUp: (text) -> (record {id:principal; Category:text; donations:vec record {id:principal; value:nat64; time:nat64}});
+    getCreatorById: (principal) -> (opt record {id:principal; Category:text; donations:vec record {id:principal; value:nat64; time:nat64}}) query;
+    getid: () -> (principal) query;
+}
